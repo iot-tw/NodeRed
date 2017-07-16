@@ -52,7 +52,7 @@
         "type": "debug",
         "z": "ca2a9d00.3835d",
         "name": "All json",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "payload",
         "x": 436.00001525878906,
@@ -64,11 +64,11 @@
         "type": "function",
         "z": "ca2a9d00.3835d",
         "name": "payload.data2ACSII",
-        "func": "function hex2a(hexx) {\n    var hex = hexx.toString();//force conversion\n    var str = '';\n    for (var i = 0; i < hex.length; i += 2)\n        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));\n    return str;\n}\nvar payload = msg.payload;\nmsg.payload = hex2a(payload.data);\nreturn msg;",
+        "func": "function hex2a(hexx) {\n    var hex = hexx.toString();//force conversion\n    var str = '';\n    for (var i = 0; i < hex.length; i += 2)\n        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));\n    return str;\n}\nvar payload = msg.payload;\n//Change \"05010320\" to your LoRa MacAddr and Change 1 to 0\nif (payload.macAddr == \"05010320\" || 1){\n    msg.payload = hex2a(payload.data);\n    return msg;\n    }",
         "outputs": 1,
         "noerr": 0,
-        "x": 557.0000152587891,
-        "y": 373,
+        "x": 492.00006103515625,
+        "y": 456.00001335144043,
         "wires": [
             [
                 "31381bcb.e35554",
@@ -83,8 +83,8 @@
         "type": "json",
         "z": "ca2a9d00.3835d",
         "name": "",
-        "x": 379.00001525878906,
-        "y": 373,
+        "x": 319.0000343322754,
+        "y": 380.0000114440918,
         "wires": [
             [
                 "cc5892bd.f19f1"
@@ -183,6 +183,16 @@
         "info": "",
         "x": 833.1000747680664,
         "y": 123.60000991821289,
+        "wires": []
+    },
+    {
+        "id": "e16c2236.46158",
+        "type": "comment",
+        "z": "ca2a9d00.3835d",
+        "name": "Change \"05010320\" to your LoRa MacAddr and Change 1 to 0",
+        "info": "Change \"05010320\" to your LoRa MacAddr and Change 1 to 0",
+        "x": 449.10009765625,
+        "y": 508.4000129699707,
         "wires": []
     },
     {
