@@ -1,244 +1,244 @@
 [
     {
-        "id": "4dc3c301.3ed89c",
+        "id": "c953b109.e2df1",
         "type": "websocket out",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "server": "1afc542f.87911c",
+        "server": "858b5ef7.b5765",
         "client": "",
-        "x": 834.6665420532227,
-        "y": 215.00003623962402,
+        "x": 866,
+        "y": 233.0000352859497,
         "wires": []
     },
     {
-        "id": "ae8ee08b.c7dde",
+        "id": "22daac5.9915d54",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "context.global.location",
         "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\ncontext.global.location = msg.payload;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 593.6664810180664,
-        "y": 329.00001335144043,
+        "x": 624.9999389648438,
+        "y": 347.0000123977661,
         "wires": [
             [
-                "4dc3c301.3ed89c",
-                "4239bb83.04ddd4"
+                "c953b109.e2df1",
+                "47aca7d4.36b688"
             ]
         ]
     },
     {
-        "id": "a8b30b23.b19288",
+        "id": "47a657df.dc2088",
         "type": "websocket in",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "server": "1afc542f.87911c",
+        "server": "858b5ef7.b5765",
         "client": "",
-        "x": 370.66666412353516,
-        "y": 218.0000228881836,
+        "x": 402.0001220703125,
+        "y": 236.00002193450928,
         "wires": [
             [
-                "d9f5fa3c.77a288"
+                "afa8cf10.0b54b"
             ]
         ]
     },
     {
-        "id": "d9f5fa3c.77a288",
+        "id": "afa8cf10.0b54b",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "context.global.location",
         "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\n\nmsg.payload = context.global.location;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 598.6666488647461,
-        "y": 219.0000228881836,
+        "x": 630.0001068115234,
+        "y": 237.00002193450928,
         "wires": [
             [
-                "4dc3c301.3ed89c"
+                "c953b109.e2df1"
             ]
         ]
     },
     {
-        "id": "3dc7d85e.d29a28",
+        "id": "f085ceec.a361d",
         "type": "http response",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "x": 740.6665954589844,
-        "y": 272.0000114440918,
+        "x": 772.0000534057617,
+        "y": 290.0000104904175,
         "wires": []
     },
     {
-        "id": "57e0b01a.e0df8",
+        "id": "ff225083.b0612",
         "type": "http in",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "url": "/map",
         "method": "get",
         "swaggerDoc": "",
-        "x": 345.66666412353516,
-        "y": 273.0000114440918,
+        "x": 377.0001220703125,
+        "y": 291.0000104904175,
         "wires": [
             [
-                "56c0d6b0.ba9c58"
+                "5c5133b9.5b6e3c"
             ]
         ]
     },
     {
-        "id": "22392806.c08768",
+        "id": "ab5cfed0.f71c8",
         "type": "debug",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "active": false,
         "console": false,
         "complete": false,
-        "x": 416.66667556762695,
-        "y": 65.00000190734863,
+        "x": 458.00011444091797,
+        "y": 34.000000953674316,
         "wires": []
     },
     {
-        "id": "d11c33e3.2fa72",
+        "id": "e7605c7d.e0ca3",
         "type": "inject",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "Location Example Input",
         "topic": "",
-        "payload": "[{\"lat\":54.9619349,\"lng\":-1.6003813},{\"lat\":54.9656694,\"lng\":-1.5239833},{\"lat\":54.9696456,\"lng\":-1.5069755},{\"lat\":54.9378907,\"lng\":-1.5273729}]",
+        "payload": "[{\"lat\":24.800883,\"lng\":120.984992},{\"lat\":24.8005512,\"lng\":120.9877736},{\"lat\":24.8002866,\"lng\":120.9881207},{\"lat\":24.8001692,\"lng\":120.9895679}]",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 146.6666717529297,
-        "y": 65.00000095367432,
+        "x": 178.00012969970703,
+        "y": 83,
         "wires": [
             [
-                "ae8ee08b.c7dde",
-                "22392806.c08768"
+                "22daac5.9915d54",
+                "ab5cfed0.f71c8"
             ]
         ]
     },
     {
-        "id": "56c0d6b0.ba9c58",
+        "id": "5c5133b9.5b6e3c",
         "type": "template",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "http://10.6.1.12:1880/map",
         "field": "payload",
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://10.6.1.12:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        lat: -12.043333,\n        lng: -77.028333\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n      //  map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
-        "x": 558.6665954589844,
-        "y": 271.0000114440918,
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://10.6.1.12:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        // 23.97565,120.973882 23.904744, 121.076179\n        lat: 23.97565,\n        lng: 120.973882\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n      //  map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "x": 590.0000534057617,
+        "y": 289.0000104904175,
         "wires": [
             [
-                "3dc7d85e.d29a28"
+                "f085ceec.a361d"
             ]
         ]
     },
     {
-        "id": "4239bb83.04ddd4",
+        "id": "47aca7d4.36b688",
         "type": "debug",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 836.6665954589844,
-        "y": 330.00001335144043,
+        "x": 868.0000534057617,
+        "y": 348.0000123977661,
         "wires": []
     },
     {
-        "id": "a164a3a7.a3c",
+        "id": "8c57b2b7.d4947",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "map",
         "func": "//var lat=(24.824253+Math.random()*0.1).toFixed(6);\n//var lng=(121.015235+Math.random()*0.1).toFixed(6);\nvar lat=parseInt(msg.payload[0].data.substr(6,8),16)/1000000;\nvar lng=parseInt(msg.payload[0].data.substr(14,8),16)/1000000;\nvar msg2=\"[{\\\"lat\\\":\"+lat+\",\\\"lng\\\":\"+lng+\"}]\";\nreturn {payload:msg2};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 335.66661834716797,
-        "y": 344.99998664855957,
+        "x": 367.0000762939453,
+        "y": 362.99998569488525,
         "wires": [
             [
-                "34f09f68.25a4b",
-                "ae8ee08b.c7dde"
+                "f9b2c4ab.df1628",
+                "22daac5.9915d54"
             ]
         ]
     },
     {
-        "id": "34f09f68.25a4b",
+        "id": "f9b2c4ab.df1628",
         "type": "debug",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 562.6665382385254,
-        "y": 366.00001335144043,
+        "x": 593.9999961853027,
+        "y": 384.0000123977661,
         "wires": []
     },
     {
-        "id": "8466a5e2.2ad108",
+        "id": "65720df2.4f2434",
         "type": "json",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "x": 111.00003051757812,
-        "y": 220.66668891906738,
+        "x": 142.33348846435547,
+        "y": 238.66668796539307,
         "wires": [
             [
-                "d43f0b21.bc6f68"
+                "2fee4081.59244"
             ]
         ]
     },
     {
-        "id": "274bba55.b6af96",
+        "id": "d6ec93e.0d7577",
         "type": "mqtt in",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "topic": "GIOT-GW/UL/+",
         "qos": "2",
-        "broker": "341d61e8.e78b4e",
-        "x": 127.00003051757812,
-        "y": 118.66668891906738,
+        "broker": "f8ec8f6f.82e89",
+        "x": 158.33348846435547,
+        "y": 136.66668796539307,
         "wires": [
             [
-                "8466a5e2.2ad108",
-                "a2368171.5fd3c"
+                "65720df2.4f2434",
+                "d7133bdf.370028"
             ]
         ]
     },
     {
-        "id": "815a43bb.43fac",
+        "id": "995b16dc.7add28",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "RSSI",
         "func": "\nreturn {payload:msg.payload[0].rssi};",
         "outputs": 1,
         "noerr": 0,
-        "x": 497.0000305175781,
-        "y": 438.66665840148926,
+        "x": 528.3334884643555,
+        "y": 456.66665744781494,
         "wires": [
             [
-                "f3e43da2.b2c44",
-                "b719a713.3df698"
+                "7eef4a78.8d3fb4",
+                "a09fbe03.703cb"
             ]
         ]
     },
     {
-        "id": "a2368171.5fd3c",
+        "id": "d7133bdf.370028",
         "type": "debug",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 362.0000305175781,
-        "y": 157.66668891906738,
+        "x": 393.33348846435547,
+        "y": 175.66668796539307,
         "wires": []
     },
     {
-        "id": "f3e43da2.b2c44",
+        "id": "7eef4a78.8d3fb4",
         "type": "ui_gauge",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "e7bd402.759ffc",
+        "group": "b6710350.08517",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -253,16 +253,16 @@
             "#e6e600",
             "#00ff40"
         ],
-        "x": 676.0000305175781,
-        "y": 431.66665840148926,
+        "x": 707.3334884643555,
+        "y": 449.66665744781494,
         "wires": []
     },
     {
-        "id": "b719a713.3df698",
+        "id": "a09fbe03.703cb",
         "type": "ui_chart",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "e7bd402.759ffc",
+        "group": "b6710350.08517",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -278,36 +278,36 @@
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
-        "x": 675.0000305175781,
-        "y": 476.66665840148926,
+        "x": 706.3334884643555,
+        "y": 494.66665744781494,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "b8b157fb.b3f188",
+        "id": "ccb20f99.43b65",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "Temperature",
         "func": "var tem=parseInt(msg.payload[0].data.substr(2,2),16);\nif (tem>63) return {payload:tem-64+0.5};\nelse return {payload:tem};",
         "outputs": 1,
         "noerr": 0,
-        "x": 511.0000305175781,
-        "y": 530.6666584014893,
+        "x": 542.3334884643555,
+        "y": 548.6666574478149,
         "wires": [
             [
-                "daa15c36.6a1e",
-                "7322ede8.556104"
+                "84a3138a.4f085",
+                "6aefd062.c095b"
             ]
         ]
     },
     {
-        "id": "daa15c36.6a1e",
+        "id": "84a3138a.4f085",
         "type": "ui_gauge",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "9a169a8e.8b5518",
+        "group": "6d086ea2.359f9",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -322,16 +322,16 @@
             "#e6e600",
             "#ff0000"
         ],
-        "x": 670.0000305175781,
-        "y": 523.6666584014893,
+        "x": 701.3334884643555,
+        "y": 541.6666574478149,
         "wires": []
     },
     {
-        "id": "7322ede8.556104",
+        "id": "6aefd062.c095b",
         "type": "ui_chart",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "9a169a8e.8b5518",
+        "group": "6d086ea2.359f9",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -347,36 +347,67 @@
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
-        "x": 669.0000305175781,
-        "y": 568.6666584014893,
+        "x": 700.3334884643555,
+        "y": 586.6666574478149,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "3c9a0ec3.4053f2",
+        "id": "2fee4081.59244",
         "type": "function",
-        "z": "afa86fe7.01a97",
-        "name": "Battery",
-        "func": "\nreturn {payload:parseInt(msg.payload[0].data.substr(4,2), 16)};",
+        "z": "c1bc2800.6b2f88",
+        "name": "macAddr==\"000000000a010183\"",
+        "func": "if (msg.payload[0].macAddr==\"000000000a010183\") return msg;\nelse return null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 505.0000305175781,
-        "y": 634.6666584014893,
+        "x": 229.33345794677734,
+        "y": 597.6667385101318,
         "wires": [
             [
-                "ddede29c.b77a1",
-                "4b31034d.ccc5ac"
+                "8c57b2b7.d4947",
+                "995b16dc.7add28",
+                "ccb20f99.43b65",
+                "b1e9e23b.cac31",
+                "3c77137b.0f2c5c",
+                "44eca6c0.d19628"
             ]
         ]
     },
     {
-        "id": "ddede29c.b77a1",
+        "id": "5026d49f.0ca30c",
+        "type": "comment",
+        "z": "c1bc2800.6b2f88",
+        "name": "Filter Tracker by MacAddr",
+        "info": "Hello",
+        "x": 197.72235870361328,
+        "y": 549.2222061157227,
+        "wires": []
+    },
+    {
+        "id": "44eca6c0.d19628",
+        "type": "function",
+        "z": "c1bc2800.6b2f88",
+        "name": "Battery",
+        "func": "\nreturn {payload:parseInt(msg.payload[0].data.substr(4,2), 16)};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 536.3334884643555,
+        "y": 652.6666574478149,
+        "wires": [
+            [
+                "e4f67c21.1e526",
+                "7b349ab4.522ad4"
+            ]
+        ]
+    },
+    {
+        "id": "e4f67c21.1e526",
         "type": "ui_gauge",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "913f6def.50c1d",
+        "group": "9cb23fef.7262a",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -391,16 +422,16 @@
             "#e6e600",
             "#00ff40"
         ],
-        "x": 674.0000305175781,
-        "y": 627.6666584014893,
+        "x": 705.3334884643555,
+        "y": 645.6666574478149,
         "wires": []
     },
     {
-        "id": "4b31034d.ccc5ac",
+        "id": "7b349ab4.522ad4",
         "type": "ui_chart",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "913f6def.50c1d",
+        "group": "9cb23fef.7262a",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -416,18 +447,18 @@
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
-        "x": 673.0000305175781,
-        "y": 672.6666584014893,
+        "x": 704.3334884643555,
+        "y": 690.6666574478149,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "7b239006.a0d2d",
+        "id": "93c025f6.7aea98",
         "type": "ui_text",
-        "z": "afa86fe7.01a97",
-        "group": "811854e2.d95968",
+        "z": "c1bc2800.6b2f88",
+        "group": "20f5329d.4df8be",
         "order": 0,
         "width": "4",
         "height": "4",
@@ -435,32 +466,32 @@
         "label": "text",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 673.0000305175781,
-        "y": 733.6666584014893,
+        "x": 704.3334884643555,
+        "y": 751.6666574478149,
         "wires": []
     },
     {
-        "id": "f497fd77.5191b",
+        "id": "b1e9e23b.cac31",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "Status",
-        "func": "var status1=parseInt(msg.payload[0].data.substr(0,2),16);\nvar status_msg=\"<br>\"\nif (status1&0x01) status_msg+=\"Positioned <br>\";\nelse status_msg+=\"Not Positioned <br>\";\n\nif (status1&0x02) status_msg+=\"South Latitude<br>\";\nelse status_msg+=\"North Latitude <br>\";\n\nif (status1&0x04) status_msg+=\"West Longitude<br>\";\nelse status_msg+=\"East Longitude <br>\";\n\nif (status1&0x08) status_msg+=\"G-sensor Data<br>\";\nelse status_msg+=\"GPS Data <br>\";\n\nif (status1&0x10) status_msg+=\"hardFault<br>\";\nelse status_msg+=\"No Error <br>\";\n\nif (status1&0x20) status_msg+=\"MFT LoRa Packet<br>\";\nelse status_msg+=\"Normal LoRa Packet <br>\";\n\nif (status1&0x40) status_msg+=\"Error Code Bit1=1<br>\";\nelse status_msg+=\"Error Code Bit1=0 <br>\";\n\nif (status1&0x80) status_msg+=\"Error Code Bit2=1<br>\";\nelse status_msg+=\"Error Code Bit2=0 <br>\";\n\nstatus_msg+=\"<br>FrameCnt=\";\n\nstatus_msg+=msg.payload[0].frameCnt;\nreturn {payload:status_msg};",
+        "func": "var status1=parseInt(msg.payload[0].data.substr(0,2),16);\nvar status_msg=\"<br>\"\nif (status1&0x01) status_msg+=\"Positioned <br>\";\nelse status_msg+=\"Not Positioned <br>\";\n\nif (status1&0x02) status_msg+=\"South Latitude<br>\";\nelse status_msg+=\"North Latitude <br>\";\n\nif (status1&0x04) status_msg+=\"West Longitude<br>\";\nelse status_msg+=\"East Longitude <br>\";\n\nif (status1&0x08) status_msg+=\"G-sensor Data<br>\";\nelse status_msg+=\"GPS Data <br>\";\n\nif (status1&0x10) status_msg+=\" Error Code Bit0=1<br>\";\nelse status_msg+=\"Error Code Bit0=0 <br>\";\n\nif (status1&0x20) status_msg+=\"MFT LoRa Packet<br>\";\nelse status_msg+=\"Normal LoRa Packet <br>\";\n\nif (status1&0x40) status_msg+=\"Error Code Bit1=1<br>\";\nelse status_msg+=\"Error Code Bit1=0 <br>\";\n\nif (status1&0x80) status_msg+=\"Error Code Bit2=1<br>\";\nelse status_msg+=\"Error Code Bit2=0 <br>\";\n\nstatus_msg+=\"<br>FrameCnt=\";\n\nstatus_msg+=msg.payload[0].frameCnt;\nreturn {payload:status_msg};",
         "outputs": 1,
         "noerr": 0,
-        "x": 511.0000305175781,
-        "y": 732.6666584014893,
+        "x": 542.3334884643555,
+        "y": 750.6666574478149,
         "wires": [
             [
-                "7b239006.a0d2d"
+                "93c025f6.7aea98"
             ]
         ]
     },
     {
-        "id": "185f0741.d95599",
+        "id": "32c835af.b8effa",
         "type": "ui_chart",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
-        "group": "811854e2.d95968",
+        "group": "20f5329d.4df8be",
         "order": 0,
         "width": 0,
         "height": 0,
@@ -476,83 +507,52 @@
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
-        "x": 675.5555610656738,
-        "y": 789.3333530426025,
+        "x": 706.8890190124512,
+        "y": 807.3333520889282,
         "wires": [
             [],
             []
         ]
     },
     {
-        "id": "59cfec29.013824",
+        "id": "3c77137b.0f2c5c",
         "type": "function",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "frameCnt",
         "func": "\nreturn {payload:msg.payload[0].time+\",\"+msg.payload[0].frameCnt};",
         "outputs": 1,
         "noerr": 0,
-        "x": 523.333366394043,
-        "y": 789.333324432373,
+        "x": 554.6668243408203,
+        "y": 807.3333234786987,
         "wires": [
             [
-                "185f0741.d95599",
-                "c24e0d0b.14d6a"
+                "32c835af.b8effa",
+                "2abd8eab.4b74f2"
             ]
         ]
     },
     {
-        "id": "c24e0d0b.14d6a",
+        "id": "2abd8eab.4b74f2",
         "type": "file",
-        "z": "afa86fe7.01a97",
+        "z": "c1bc2800.6b2f88",
         "name": "",
         "filename": "\\tmp\\smallTracker.txt",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "false",
-        "x": 731.0000305175781,
-        "y": 869.6666507720947,
+        "x": 762.3334884643555,
+        "y": 887.6666498184204,
         "wires": []
     },
     {
-        "id": "d43f0b21.bc6f68",
-        "type": "function",
-        "z": "afa86fe7.01a97",
-        "name": "macAddr==\"000000000a010183\"",
-        "func": "if (msg.payload[0].macAddr==\"000000000a010183\") return msg;\nelse return null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 198,
-        "y": 579.6667394638062,
-        "wires": [
-            [
-                "a164a3a7.a3c",
-                "815a43bb.43fac",
-                "b8b157fb.b3f188",
-                "f497fd77.5191b",
-                "59cfec29.013824",
-                "3c9a0ec3.4053f2"
-            ]
-        ]
-    },
-    {
-        "id": "ca49fd54.7d439",
-        "type": "comment",
-        "z": "afa86fe7.01a97",
-        "name": "Filter Tracker by MacAddr",
-        "info": "Hello",
-        "x": 166.38890075683594,
-        "y": 531.222207069397,
-        "wires": []
-    },
-    {
-        "id": "1afc542f.87911c",
+        "id": "858b5ef7.b5765",
         "type": "websocket-listener",
         "z": "",
         "path": "/ws/location",
         "wholemsg": "false"
     },
     {
-        "id": "341d61e8.e78b4e",
+        "id": "f8ec8f6f.82e89",
         "type": "mqtt-broker",
         "z": "",
         "broker": "localhost",
@@ -570,45 +570,45 @@
         "birthPayload": ""
     },
     {
-        "id": "e7bd402.759ffc",
+        "id": "b6710350.08517",
         "type": "ui_group",
         "z": "",
         "name": "RSSI",
-        "tab": "53385ccf.7e63c4",
+        "tab": "75b4a4a1.77d60c",
         "order": 3,
         "disp": true,
         "width": "6"
     },
     {
-        "id": "9a169a8e.8b5518",
+        "id": "6d086ea2.359f9",
         "type": "ui_group",
         "z": "",
         "name": "Temperature",
-        "tab": "53385ccf.7e63c4",
+        "tab": "75b4a4a1.77d60c",
         "order": 1,
         "disp": true,
         "width": "6"
     },
     {
-        "id": "913f6def.50c1d",
+        "id": "9cb23fef.7262a",
         "type": "ui_group",
         "z": "",
         "name": "Battery",
-        "tab": "53385ccf.7e63c4",
+        "tab": "75b4a4a1.77d60c",
         "disp": true,
         "width": "6"
     },
     {
-        "id": "811854e2.d95968",
+        "id": "20f5329d.4df8be",
         "type": "ui_group",
         "z": "",
         "name": "Status",
-        "tab": "53385ccf.7e63c4",
+        "tab": "75b4a4a1.77d60c",
         "disp": true,
         "width": "6"
     },
     {
-        "id": "53385ccf.7e63c4",
+        "id": "75b4a4a1.77d60c",
         "type": "ui_tab",
         "z": "",
         "name": "Tracker Status",
