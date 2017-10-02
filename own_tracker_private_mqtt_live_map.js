@@ -6,8 +6,8 @@
         "name": "",
         "server": "858b5ef7.b5765",
         "client": "",
-        "x": 866,
-        "y": 233.0000352859497,
+        "x": 903.0000114440918,
+        "y": 157.0000286102295,
         "wires": []
     },
     {
@@ -18,8 +18,8 @@
         "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\ncontext.global.location = msg.payload;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 624.9999389648438,
-        "y": 347.0000123977661,
+        "x": 674.9999542236328,
+        "y": 276.00000286102295,
         "wires": [
             [
                 "c953b109.e2df1",
@@ -34,8 +34,8 @@
         "name": "",
         "server": "858b5ef7.b5765",
         "client": "",
-        "x": 402.0001220703125,
-        "y": 236.00002193450928,
+        "x": 403.00011444091797,
+        "y": 156.00001621246338,
         "wires": [
             [
                 "afa8cf10.0b54b"
@@ -50,8 +50,8 @@
         "func": "// The received message is stored in 'msg'\n// It will have at least a 'payload' property:\n//   console.log(msg.payload);\n// The 'context' object is available to store state\n// between invocations of the function\n//   context = {};\n\nmsg.payload = context.global.location;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 630.0001068115234,
-        "y": 237.00002193450928,
+        "x": 667.0001182556152,
+        "y": 161.00001525878906,
         "wires": [
             [
                 "c953b109.e2df1"
@@ -63,8 +63,8 @@
         "type": "http response",
         "z": "c1bc2800.6b2f88",
         "name": "",
-        "x": 772.0000534057617,
-        "y": 290.0000104904175,
+        "x": 872.0000648498535,
+        "y": 90.00000762939453,
         "wires": []
     },
     {
@@ -75,8 +75,8 @@
         "url": "/map",
         "method": "get",
         "swaggerDoc": "",
-        "x": 377.0001220703125,
-        "y": 291.0000104904175,
+        "x": 418.00011444091797,
+        "y": 95.00000762939453,
         "wires": [
             [
                 "5c5133b9.5b6e3c"
@@ -91,8 +91,8 @@
         "active": false,
         "console": false,
         "complete": false,
-        "x": 458.00011444091797,
-        "y": 34.000000953674316,
+        "x": 639.000114440918,
+        "y": 220.00000190734863,
         "wires": []
     },
     {
@@ -106,8 +106,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 178.00012969970703,
-        "y": 83,
+        "x": 387.00012969970703,
+        "y": 223.00000095367432,
         "wires": [
             [
                 "22daac5.9915d54",
@@ -124,9 +124,9 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks & Node-Red Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://10.6.1.12:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        // 23.97565,120.973882 23.904744, 121.076179\n        lat: 23.97565,\n        lng: 120.973882\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n      //  map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
-        "x": 590.0000534057617,
-        "y": 289.0000104904175,
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Owntracks Live Map</title>\n  <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js\"></script>\n  <script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=true\"></script>\n  <script type=\"text/javascript\" src=\"http://yourjavascript.com/4594301102/gmaps.js\"></script>\n \n  <style type=\"text/css\" media=\"screen\">\n    #map {\n      position:absolute;\n      top: 0; bottom: 0; left: 0; right: 0;\n    }\n  </style>\n</head>\n<body>\n \n  <div id=\"map\"></div>\n  <script type=\"text/javascript\">\n  var socketaddy = \"ws://10.6.1.12:1880/ws/location\";\n    var map;\n    var sock;\n    $(document).ready(function(){\n      \n      map = new GMaps({\n        div: '#map',\n        // 23.97565,120.973882 23.904744, 121.076179\n        lat: 23.97565,\n        lng: 120.973882\n      });\n      \n      \n      sock = new WebSocket(socketaddy);\n      sock.onopen = function(){ console.log(\"Connected websocket\");\n\t      console.log(\"Sending ping..\");\n\t      sock.send(\"Ping!\");\n\t      console.log(\"Ping sent..\");\n      };\n      sock.onerror = function(){ console.log(\"Websocket error\"); };\n      sock.onmessage = function(evt){\n        var latlng = JSON.parse(evt.data);\n        var array = $.map(latlng, function(el) {\n  \t\t\treturn [[el.lat, el.lng]];\n\t\t\t});\n        \n      //  map.removeMarkers();\n        map.removePolylines();\n       \tconsole.log(\"Got marker at \" + latlng[0].lat + \", \" + latlng[0].lng, latlng);\n        map.setZoom(17);\n       \tmap.setCenter(latlng[0].lat, latlng[0].lng);\n        map.addMarkers(latlng);\n      \tmap.drawPolyline({\n\t\t  path: array,\n\t\t  strokeColor: '#131540',\n\t\t  strokeOpacity: 0.6,\n\t\t  strokeWeight: 6\n\t\t});\n      }\n    });\n  </script>\n</body>\n</html>",
+        "x": 641.0000648498535,
+        "y": 96.00000762939453,
         "wires": [
             [
                 "f085ceec.a361d"
@@ -141,8 +141,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 868.0000534057617,
-        "y": 348.0000123977661,
+        "x": 902.0000686645508,
+        "y": 273.00000381469727,
         "wires": []
     },
     {
@@ -150,11 +150,11 @@
         "type": "function",
         "z": "c1bc2800.6b2f88",
         "name": "map",
-        "func": "//var lat=(24.824253+Math.random()*0.1).toFixed(6);\n//var lng=(121.015235+Math.random()*0.1).toFixed(6);\nvar lat=parseInt(msg.payload[0].data.substr(6,8),16)/1000000;\nvar lng=parseInt(msg.payload[0].data.substr(14,8),16)/1000000;\nvar msg2=\"[{\\\"lat\\\":\"+lat+\",\\\"lng\\\":\"+lng+\"}]\";\nreturn {payload:msg2};\n",
+        "func": "//var lat=(24.824253+Math.random()*0.1).toFixed(6);\n//var lng=(121.015235+Math.random()*0.1).toFixed(6);\nvar lat=parseInt(msg.payload[0].data.substr(6,8),16)*180/Math.pow(2,32);\nvar lng=parseInt(msg.payload[0].data.substr(14,8),16)*180/Math.pow(2,32);\nvar msg2=\"[{\\\"lat\\\":\"+lat+\",\\\"lng\\\":\"+lng+\"}]\";\nreturn {payload:msg2};\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 367.0000762939453,
-        "y": 362.99998569488525,
+        "x": 427.0000877380371,
+        "y": 296.9999771118164,
         "wires": [
             [
                 "f9b2c4ab.df1628",
@@ -170,8 +170,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 593.9999961853027,
-        "y": 384.0000123977661,
+        "x": 647.0000114440918,
+        "y": 336.0000057220459,
         "wires": []
     },
     {
@@ -183,7 +183,8 @@
         "y": 238.66668796539307,
         "wires": [
             [
-                "2fee4081.59244"
+                "2fee4081.59244",
+                "d7133bdf.370028"
             ]
         ]
     },
@@ -199,8 +200,7 @@
         "y": 136.66668796539307,
         "wires": [
             [
-                "65720df2.4f2434",
-                "d7133bdf.370028"
+                "65720df2.4f2434"
             ]
         ]
     },
@@ -212,8 +212,8 @@
         "func": "\nreturn {payload:msg.payload[0].rssi};",
         "outputs": 1,
         "noerr": 0,
-        "x": 528.3334884643555,
-        "y": 456.66665744781494,
+        "x": 532.3335037231445,
+        "y": 567.6666793823242,
         "wires": [
             [
                 "7eef4a78.8d3fb4",
@@ -229,8 +229,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 393.33348846435547,
-        "y": 175.66668796539307,
+        "x": 223.33350372314453,
+        "y": 491.66670989990234,
         "wires": []
     },
     {
@@ -253,8 +253,8 @@
             "#e6e600",
             "#00ff40"
         ],
-        "x": 707.3334884643555,
-        "y": 449.66665744781494,
+        "x": 701.3335075378418,
+        "y": 546.6666793823242,
         "wires": []
     },
     {
@@ -278,112 +278,12 @@
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
-        "x": 706.3334884643555,
-        "y": 494.66665744781494,
+        "x": 700.3335075378418,
+        "y": 591.6666793823242,
         "wires": [
             [],
             []
         ]
-    },
-    {
-        "id": "ccb20f99.43b65",
-        "type": "function",
-        "z": "c1bc2800.6b2f88",
-        "name": "Temperature",
-        "func": "var tem=parseInt(msg.payload[0].data.substr(2,2),16);\nif (tem>63) return {payload:tem-64+0.5};\nelse return {payload:tem};",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 542.3334884643555,
-        "y": 548.6666574478149,
-        "wires": [
-            [
-                "84a3138a.4f085",
-                "6aefd062.c095b"
-            ]
-        ]
-    },
-    {
-        "id": "84a3138a.4f085",
-        "type": "ui_gauge",
-        "z": "c1bc2800.6b2f88",
-        "name": "",
-        "group": "6d086ea2.359f9",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Gauge",
-        "label": "Degree C",
-        "format": "{{value}}",
-        "min": "0",
-        "max": "50",
-        "colors": [
-            "#00ff40",
-            "#e6e600",
-            "#ff0000"
-        ],
-        "x": 701.3334884643555,
-        "y": 541.6666574478149,
-        "wires": []
-    },
-    {
-        "id": "6aefd062.c095b",
-        "type": "ui_chart",
-        "z": "c1bc2800.6b2f88",
-        "name": "",
-        "group": "6d086ea2.359f9",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "chart",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "ymin": "0",
-        "ymax": "50",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "x": 700.3334884643555,
-        "y": 586.6666574478149,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "2fee4081.59244",
-        "type": "function",
-        "z": "c1bc2800.6b2f88",
-        "name": "macAddr==\"000000000a010183\"",
-        "func": "if (msg.payload[0].macAddr==\"000000000a010183\") return msg;\nelse return null;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 229.33345794677734,
-        "y": 597.6667385101318,
-        "wires": [
-            [
-                "8c57b2b7.d4947",
-                "995b16dc.7add28",
-                "ccb20f99.43b65",
-                "b1e9e23b.cac31",
-                "3c77137b.0f2c5c",
-                "44eca6c0.d19628"
-            ]
-        ]
-    },
-    {
-        "id": "5026d49f.0ca30c",
-        "type": "comment",
-        "z": "c1bc2800.6b2f88",
-        "name": "Filter Tracker by MacAddr",
-        "info": "Hello",
-        "x": 197.72235870361328,
-        "y": 549.2222061157227,
-        "wires": []
     },
     {
         "id": "44eca6c0.d19628",
@@ -487,51 +387,6 @@
         ]
     },
     {
-        "id": "32c835af.b8effa",
-        "type": "ui_chart",
-        "z": "c1bc2800.6b2f88",
-        "name": "",
-        "group": "20f5329d.4df8be",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "label": "chart",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "x": 706.8890190124512,
-        "y": 807.3333520889282,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "3c77137b.0f2c5c",
-        "type": "function",
-        "z": "c1bc2800.6b2f88",
-        "name": "frameCnt",
-        "func": "\nreturn {payload:msg.payload[0].time+\",\"+msg.payload[0].frameCnt};",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 554.6668243408203,
-        "y": 807.3333234786987,
-        "wires": [
-            [
-                "32c835af.b8effa",
-                "2abd8eab.4b74f2"
-            ]
-        ]
-    },
-    {
         "id": "2abd8eab.4b74f2",
         "type": "file",
         "z": "c1bc2800.6b2f88",
@@ -540,8 +395,51 @@
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "false",
-        "x": 762.3334884643555,
-        "y": 887.6666498184204,
+        "x": 596.3335037231445,
+        "y": 821.6666316986084,
+        "wires": []
+    },
+    {
+        "id": "2fee4081.59244",
+        "type": "function",
+        "z": "c1bc2800.6b2f88",
+        "name": "macAddr==\"000000000a010183\"",
+        "func": "if (msg.payload[0].macAddr==\"0000000004000476\") return msg;\nelse return null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 229.33345794677734,
+        "y": 597.6667385101318,
+        "wires": [
+            [
+                "8c57b2b7.d4947",
+                "995b16dc.7add28",
+                "b1e9e23b.cac31",
+                "44eca6c0.d19628",
+                "7d63b07a.23382",
+                "2abd8eab.4b74f2"
+            ]
+        ]
+    },
+    {
+        "id": "5026d49f.0ca30c",
+        "type": "comment",
+        "z": "c1bc2800.6b2f88",
+        "name": "Filter Tracker by MacAddr",
+        "info": "Hello",
+        "x": 197.72235870361328,
+        "y": 549.2222061157227,
+        "wires": []
+    },
+    {
+        "id": "7d63b07a.23382",
+        "type": "debug",
+        "z": "c1bc2800.6b2f88",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 441.16668701171875,
+        "y": 903.4444885253906,
         "wires": []
     },
     {
@@ -576,16 +474,6 @@
         "name": "RSSI",
         "tab": "75b4a4a1.77d60c",
         "order": 3,
-        "disp": true,
-        "width": "6"
-    },
-    {
-        "id": "6d086ea2.359f9",
-        "type": "ui_group",
-        "z": "",
-        "name": "Temperature",
-        "tab": "75b4a4a1.77d60c",
-        "order": 1,
         "disp": true,
         "width": "6"
     },
