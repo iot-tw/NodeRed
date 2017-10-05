@@ -132,7 +132,7 @@
         "label": "Voltage",
         "chartType": "line",
         "legend": "false",
-        "xformat": "%H:%M:%S",
+        "xformat": "HH:mm:ss",
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
