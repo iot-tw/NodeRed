@@ -1,0 +1,79 @@
+[
+    {
+        "id": "41b7a3cc1e605fda",
+        "type": "tab",
+        "label": "流程1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e1cccb26.105098",
+        "type": "debug",
+        "z": "41b7a3cc1e605fda",
+        "name": "",
+        "active": true,
+        "complete": "payload",
+        "x": 270,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "fc0abb72.174518",
+        "type": "inject",
+        "z": "41b7a3cc1e605fda",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "5743b577.f84d6c"
+            ]
+        ]
+    },
+    {
+        "id": "5743b577.f84d6c",
+        "type": "function",
+        "z": "41b7a3cc1e605fda",
+        "name": "Format timestamp",
+        "func": "// Create a Date object from the payload\nvar date = new Date(msg.payload);\n// Change the payload to be a formatted Date string\nmsg.payload = \"hello world\";\n// Return the message so it can be sent on\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "e1cccb26.105098"
+            ]
+        ]
+    },
+    {
+        "id": "27374d6944750aca",
+        "type": "comment",
+        "z": "41b7a3cc1e605fda",
+        "name": "點擊inject 注入器 發動一個message to 下個節點",
+        "info": "",
+        "x": 260,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "99527cdaead435c9",
+        "type": "comment",
+        "z": "41b7a3cc1e605fda",
+        "name": "輸出的結果會丟到 除錯窗口中。",
+        "info": "",
+        "x": 230,
+        "y": 680,
+        "wires": []
+    }
+]
