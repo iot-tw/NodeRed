@@ -442,7 +442,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "json debug",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
