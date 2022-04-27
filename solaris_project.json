@@ -357,15 +357,15 @@
         "id": "daee5d8d.93dda",
         "type": "function",
         "z": "5c441759e2734c24",
-        "name": "get payload.data",
+        "name": "太陽能班排長",
         "func": "var payload = msg.payload[0];\nfunction hex_to_ascii(str1)\n {\n\tvar hex  = str1.toString();\n\tvar str = '';\n\tfor (var n = 0; n < hex.length; n += 2) {\n\t\tstr += String.fromCharCode(parseInt(hex.substr(n, 2), 16));\n\t}\n\treturn str;\n }\n//bin_string = (parseInt(payload.data, 16).toString(2)).padStart(8, '0');\n// return msg;\nascii_string = hex_to_ascii(msg.payload[0].data)\nvar msg1 = { contry_code:ascii_string.slice(0,3)};\n// var msg1 = { payload: ascii_string};\nvar msg2 = { area_code:  ascii_string.slice(3,5)};\nvar msg3 = { local_area: ascii_string.slice(5,7)};\nvar msg4 = { sort_id:    ascii_string.slice(7,9)};\nvar msg5 = { data_number:ascii_string.slice(9,12)};\nvar msg6 = { ID1:        ascii_string.slice(12,15)};\nvar msg7 = { ID2:        ascii_string.slice(15,18)};\nvar T1_00 = { payload:      ascii_string.slice(18,20)};\nvar T2_00 = { payload:      ascii_string.slice(20,22)};\nvar V0_00 = { payload:      ascii_string.slice(22,25)/10};\nreturn [ msg1, msg2, msg3, msg4, msg5, msg6, msg7, T1_00, T2_00, V0_00 ];",
         "outputs": 10,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 190,
-        "y": 340,
+        "x": 300,
+        "y": 300,
         "wires": [
             [
                 "bc298137.ab8b7"
