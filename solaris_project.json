@@ -1377,7 +1377,7 @@
         "allowColorForValueInMessage": false,
         "shape": "circle",
         "showGlow": false,
-        "name": "二號溫度T1",
+        "name": "三號溫度T1",
         "x": 790,
         "y": 760,
         "wires": []
@@ -1427,7 +1427,7 @@
         "allowColorForValueInMessage": false,
         "shape": "square",
         "showGlow": false,
-        "name": "二號溫度T2",
+        "name": "三號溫度T2",
         "x": 790,
         "y": 800,
         "wires": []
@@ -1459,7 +1459,7 @@
         "group": "e09e6b64da968877",
         "width": 3,
         "height": 1,
-        "label": "二號電壓",
+        "label": "三號電壓",
         "labelPlacement": "right",
         "labelAlignment": "left",
         "colorForValue": [
@@ -1477,7 +1477,7 @@
         "allowColorForValueInMessage": false,
         "shape": "square",
         "showGlow": false,
-        "name": "二號電壓",
+        "name": "三號電壓",
         "x": 780,
         "y": 840,
         "wires": []
