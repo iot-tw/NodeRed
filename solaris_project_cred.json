@@ -856,8 +856,8 @@
         "allowColorForValueInMessage": false,
         "shape": "circle",
         "showGlow": false,
-        "name": "一號溫度T1",
-        "x": 790,
+        "name": "一號T1",
+        "x": 780,
         "y": 440,
         "wires": []
     },
