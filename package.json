@@ -1,0 +1,12 @@
+{
+    "name": "NodeRed",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "solaris_project.json",
+            "credentialsFile": "solaris_project_cred.json"
+        }
+    }
+}
