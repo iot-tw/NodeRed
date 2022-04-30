@@ -2,6 +2,7 @@ version: "3"
 
 services:
   broker:
+    container_name: broker
     image: eclipse-mosquitto
     networks:
       - localnet
@@ -12,6 +13,7 @@ services:
     restart: on-failure
 
   nodered:
+    container_name: nodered
     depends_on:
       - broker
     image: nodered/node-red
