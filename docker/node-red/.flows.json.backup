@@ -10,19 +10,27 @@
     {
         "id": "3a2f2943.8640a6",
         "type": "mqtt-broker",
-        "broker": "localhost",
+        "name": "",
+        "broker": "broker",
         "port": "1883",
         "clientid": "",
+        "autoConnect": true,
         "usetls": false,
-        "compatmode": true,
+        "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
         "birthQos": "2",
         "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
         "willTopic": "",
-        "willQos": "2",
-        "willPayload": ""
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
     },
     {
         "id": "ab7db771.fa0e38",
@@ -50,7 +58,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "All json",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -255,5 +263,52 @@
         "x": 770,
         "y": 480,
         "wires": []
+    },
+    {
+        "id": "f2e916b066c939be",
+        "type": "mqtt out",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "topic": "GIOT-GW/UL/1C497B499010",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3a2f2943.8640a6",
+        "x": 190,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ffb16c3728c184f8",
+        "type": "inject",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "f2e916b066c939be"
+            ]
+        ]
     }
 ]
