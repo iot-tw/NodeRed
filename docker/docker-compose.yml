@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  broker:
+    container_name: broker
+    image: eclipse-mosquitto
+    networks:
+      - localnet
+    ports:
+      - "1883:1883"
+    volumes:
+      - "./mosquitto:/mosquitto"
+    restart: on-failure
+
+  nodered:
+    container_name: nodered
+    depends_on:
+      - broker
+    image: nodered/node-red
+    networks:
+      - localnet
+    ports:
+      - "1880:1880"
+    volumes:
+      - "./node-red:/data"
+    user: "0"
+    restart: always
+
+networks:
+  localnet:
