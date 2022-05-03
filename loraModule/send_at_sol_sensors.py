@@ -43,8 +43,11 @@ class LoraSerial(serial.Serial):
 com_port_list = []
 for i, port in enumerate(list(serial.tools.list_ports.comports())):
     com_port_list.append(port.device)
+    if "FT230X" in port.description:
+        ur_device = i
     print(i, port)
-ur_device = int(input("which device?"))
+if not ur_device:
+    ur_device = int(input("which device?"))
 lora_module = LoraSerial(com_port_list[ur_device])
 # FW Version
 print(lora_module.sendLine("at+slmr?"))
@@ -53,6 +56,7 @@ print(lora_module.sendLine("at+sgmm?"))
 # US915 0:SF10 1:SF9 2:SF8 3:SF7
 # AS923 0:SF12 1:SF11 2:SF10 3:SF9 4:SF8 5:SF7
 print(lora_module.sendLine("at+cadr=?"))
+print(lora_module.sendLine("at+cadr=3,5,FFFF,0,1"))
 print(lora_module.sendLine("at+cadr?"))
 # Band
 ismb_list = lora_module.sendLine("at+cismb=?")
@@ -75,3 +79,4 @@ print(lora_module.sendLine("at+cnwkskey?"))
 print(lora_module.sendLine("at+cappskey?"))
 # UpLink Freq List
 print(lora_module.sendLine("at+cqch?"))
+print(lora_module.sendLine('AT+dtx=88,"8863599990090000004041351404135140413514041351404135140413514041351404135140413514041351"'))
