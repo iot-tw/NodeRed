@@ -8,6 +8,103 @@
         "env": []
     },
     {
+        "id": "658e28f743501267",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
         "id": "3a2f2943.8640a6",
         "type": "mqtt-broker",
         "name": "",
@@ -33,6 +130,57 @@
         "sessionExpiry": ""
     },
     {
+        "id": "723379c69578ddb2",
+        "type": "ui_group",
+        "name": "一號太陽能板",
+        "tab": "63d6e1dacf4aad0e",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2358e2f987375741",
+        "type": "ui_group",
+        "name": "二號太陽能板",
+        "tab": "63d6e1dacf4aad0e",
+        "order": 2,
+        "disp": true,
+        "width": "9",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "e09e6b64da968877",
+        "type": "ui_group",
+        "name": "狀態版",
+        "tab": "de4f6f425e9e5d7a",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "63d6e1dacf4aad0e",
+        "type": "ui_tab",
+        "name": "歷史紀錄",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "de4f6f425e9e5d7a",
+        "type": "ui_tab",
+        "name": "告警狀態",
+        "icon": "check",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "ab7db771.fa0e38",
         "type": "mqtt in",
         "z": "5c441759e2734c24",
@@ -44,12 +192,12 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 200,
-        "y": 160,
+        "x": 100,
+        "y": 120,
         "wires": [
             [
-                "afd9cf79.ba28f",
-                "f1e16b5a.b9cc58"
+                "f1e16b5a.b9cc58",
+                "142608e40f7e91be"
             ]
         ]
     },
@@ -58,7 +206,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "All json",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -66,23 +214,23 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 466.00001525878906,
-        "y": 160,
+        "x": 300,
+        "y": 80,
         "wires": []
     },
     {
         "id": "daee5d8d.93dda",
         "type": "function",
         "z": "5c441759e2734c24",
-        "name": "get payload.data",
-        "func": "var payload = msg.payload[0];\nbin_string = (parseInt(payload.data, 16).toString(2)).padStart(8, '0');\n// return msg;\nvar msg1 = { contry_code:bin_string.slice(1,13)};\nvar msg2 = { area_code:Number.parseInt(bin_string.slice(14,24),2)};\nvar msg3 = { local_area:bin_string.slice(25,32)};\nvar msg4 = { sort_id:bin_string.slice(33,40)};\nvar msg5 = { data_number:bin_string.slice(41,48)};\nvar msg6 = { ID1:bin_string.slice(49,64)};\nvar msg7 = { ID2:bin_string.slice(49,64)};\n\n\nreturn [ msg1, msg2, msg3, msg4, msg5, msg6 ];",
-        "outputs": 7,
+        "name": "太陽能班排長",
+        "func": "var payload = msg.payload[0];\nfunction hex_to_ascii(str1)\n {\n\tvar hex  = str1.toString();\n\tvar str = '';\n\tfor (var n = 0; n < hex.length; n += 2) {\n\t\tstr += String.fromCharCode(parseInt(hex.substr(n, 2), 16));\n\t}\n\treturn str;\n }\n//bin_string = (parseInt(payload.data, 16).toString(2)).padStart(8, '0');\n// return msg;\nascii_string = hex_to_ascii(msg.payload[0].data)\nvar msg1 = { contry_code:ascii_string.slice(0,3)};\n// var msg1 = { payload: ascii_string};\nvar msg2 = { area_code:  ascii_string.slice(3,5)};\nvar msg3 = { local_area: ascii_string.slice(5,7)};\nvar msg4 = { sort_id:    ascii_string.slice(7,9)};\nvar msg5 = { data_number:ascii_string.slice(9,12)};\nvar msg6 = { ID1:        ascii_string.slice(12,15)};\nvar msg7 = { ID2:        ascii_string.slice(15,18)};\nvar T1_00 = { payload:      ascii_string.slice(18,20)};\nvar T2_00 = { payload:      ascii_string.slice(20,22)};\nvar V0_00 = { payload:      ascii_string.slice(22,25)/10};\nvar T1_01 = { payload:      ascii_string.slice(25,27)};\nvar T2_01 = { payload:      ascii_string.slice(27,29)};\nvar V0_01 = { payload:      ascii_string.slice(29,32)/10};\nvar T1_02 = { payload:      ascii_string.slice(32,34)};\nvar T2_02 = { payload:      ascii_string.slice(34,36)};\nvar V0_02 = { payload:      ascii_string.slice(36,39)/10};\nvar T1_03 = { payload:      ascii_string.slice(39,41)};\nvar T2_03 = { payload:      ascii_string.slice(41,43)};\nvar V0_03 = { payload:      ascii_string.slice(43,46)/10};\nvar T1_04 = { payload:      ascii_string.slice(46,48)};\nvar T2_04 = { payload:      ascii_string.slice(48,50)};\nvar V0_04 = { payload:      ascii_string.slice(50,54)/10};\nvar T1_05 = { payload:      ascii_string.slice(54,56)};\nvar T2_05 = { payload:      ascii_string.slice(56,58)};\nvar V0_05 = { payload:      ascii_string.slice(58,61)/10};\nvar T1_06 = { payload:      ascii_string.slice(61,63)};\nvar T2_06 = { payload:      ascii_string.slice(63,65)};\nvar V0_06 = { payload:      ascii_string.slice(65,68)/10};\nvar T1_07 = { payload:      ascii_string.slice(68,70)};\nvar T2_07 = { payload:      ascii_string.slice(70,72)};\nvar V0_07 = { payload:      ascii_string.slice(72,75)/10};\nvar T1_08 = { payload:      ascii_string.slice(75,77)};\nvar T2_08 = { payload:      ascii_string.slice(77,79)};\nvar V0_08 = { payload:      ascii_string.slice(79,82)/10};\nvar T1_09 = { payload:      ascii_string.slice(82,84)};\nvar T2_09 = { payload:      ascii_string.slice(84,86)};\nvar V0_09 = { payload:      ascii_string.slice(86,89)/10};\nreturn [ msg1, msg2, msg3, msg4, msg5, msg6, msg7, \n    T1_00, T2_00, V0_00, \n    T1_01, T2_01, V0_01, \n    T1_02, T2_02, V0_02, \n    T1_03, T2_03, V0_03, \n    T1_04, T2_04, V0_04, \n    T1_05, T2_05, V0_05, \n    T1_06, T2_06, V0_06, \n    T1_07, T2_07, V0_07, \n    T1_08, T2_08, V0_08, \n    T1_09, T2_09, V0_09];",
+        "outputs": 37,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 380,
+        "x": 120,
+        "y": 680,
         "wires": [
             [
                 "bc298137.ab8b7"
@@ -93,17 +241,134 @@
             [
                 "690f9dd6b61da5df"
             ],
+            [],
             [
                 "53b3c4f9d6e16afa"
             ],
+            [],
+            [],
             [
-                "d6adf4aec81c606e"
+                "d6adf4aec81c606e",
+                "5c633e9015ee7e7a",
+                "89ba7c33d4f030a1"
             ],
             [
-                "2ab0a61b78a0935b"
+                "2ab0a61b78a0935b",
+                "ce55fc427dfa53f4",
+                "bf2f003632b3560f"
             ],
             [
-                "6f6db94454568853"
+                "6f6db94454568853",
+                "40453f3c40e2dd21",
+                "68a6c3c496c6ad53"
+            ],
+            [
+                "a8b0774b14a75b2c",
+                "8d9031ea6a6394df"
+            ],
+            [
+                "80365b1aa8f3a033",
+                "6c5de595eb4cb17f"
+            ],
+            [
+                "7162b28b406408ae",
+                "d9a0a9e0bc91b0fe"
+            ],
+            [
+                "6536cb5d9ec40508",
+                "a054b1412db37acf"
+            ],
+            [
+                "330670da928ce502",
+                "55068460245647a0"
+            ],
+            [
+                "7f1aabc715013c60",
+                "767fa7694beb6414"
+            ],
+            [
+                "e650722ff60e831b",
+                "91ad6417699bc0c8"
+            ],
+            [
+                "ef19cd193bb1160e",
+                "f6e641dee47d05b4"
+            ],
+            [
+                "1658e87ffe2cb844",
+                "f109da08dc2b8609"
+            ],
+            [
+                "0204de609ababc7a",
+                "168c3d7345727d09"
+            ],
+            [
+                "c2fa301e251fecfa",
+                "46fa8fdb23753145"
+            ],
+            [
+                "6b02a8aca20c6f54",
+                "cff2b389770b8a3a"
+            ],
+            [
+                "f6ede9e0faebe15c",
+                "3a348f5ef2aec474"
+            ],
+            [
+                "c7c83b21ac1468f2",
+                "d32229986aa9a3a1"
+            ],
+            [
+                "65c2704f1abb5aa6",
+                "328b50e938cc9a37"
+            ],
+            [
+                "006b80561792ecea",
+                "956a49f505860bd7"
+            ],
+            [
+                "786b683e65ce67d0",
+                "8fee02c0d2d2d08a"
+            ],
+            [
+                "f5707ac024c0388c",
+                "0a77c64c594878e2"
+            ],
+            [
+                "019abcfe9f0d0489",
+                "31b6d1f25aaa9484"
+            ],
+            [
+                "afd24bc4f802961f",
+                "6cbb4f5f6fcedbb5"
+            ],
+            [
+                "402e2567ace068eb",
+                "2527b307a0197a94"
+            ],
+            [
+                "999716b4698d2d54",
+                "58c264c217d7d9be"
+            ],
+            [
+                "88ef9e5c3240a104",
+                "97e7e921b9f17a2a"
+            ],
+            [
+                "55fa53584903bfb1",
+                "141f9a4dc3cf0297"
+            ],
+            [
+                "b8f61cc77809562d",
+                "e324e999324818e5"
+            ],
+            [
+                "f2d3e01a39282b8a",
+                "abe1c473b948a803"
+            ],
+            [
+                "8fd45b073b8600c3",
+                "6f8c9ac9d797e28a"
             ]
         ],
         "inputLabels": [
@@ -112,11 +377,41 @@
         "outputLabels": [
             "國碼",
             "區碼",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "場域碼",
+            "排序",
+            "資料",
+            "ID1",
+            "ID2",
+            "T1_00",
+            "T2_00",
+            "V_00",
+            "T1_01",
+            "T2_01",
+            "V_01",
+            "T1_02",
+            "T2_02",
+            "V_02",
+            "T1_03",
+            "T2_03",
+            "V_03",
+            "T1_04",
+            "T2_04",
+            "v_04",
+            "t1_05",
+            "t2_05",
+            "v_05",
+            "t1_06",
+            "t2_06",
+            "v06",
+            "t107",
+            "t207",
+            "v07",
+            "t108",
+            "t208",
+            "v08",
+            "t109",
+            "t209",
+            "v09"
         ]
     },
     {
@@ -127,11 +422,12 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 350,
-        "y": 220,
+        "x": 130,
+        "y": 200,
         "wires": [
             [
-                "daee5d8d.93dda"
+                "daee5d8d.93dda",
+                "afd9cf79.ba28f"
             ]
         ]
     },
@@ -140,7 +436,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "json debug",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -148,8 +444,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 790,
-        "y": 240,
+        "x": 310,
+        "y": 120,
         "wires": []
     },
     {
@@ -158,8 +454,8 @@
         "z": "5c441759e2734c24",
         "name": "Solaris MQTT Flow",
         "info": "",
-        "x": 213,
-        "y": 119,
+        "x": 113,
+        "y": 79,
         "wires": []
     },
     {
@@ -167,7 +463,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -175,8 +471,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 280,
+        "x": 290,
+        "y": 160,
         "wires": []
     },
     {
@@ -192,8 +488,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 320,
+        "x": 290,
+        "y": 200,
         "wires": []
     },
     {
@@ -209,8 +505,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 360,
+        "x": 290,
+        "y": 240,
         "wires": []
     },
     {
@@ -226,8 +522,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 400,
+        "x": 290,
+        "y": 280,
         "wires": []
     },
     {
@@ -243,8 +539,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 440,
+        "x": 290,
+        "y": 320,
         "wires": []
     },
     {
@@ -260,30 +556,1983 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
-        "y": 480,
+        "x": 290,
+        "y": 360,
         "wires": []
     },
     {
-        "id": "f2e916b066c939be",
-        "type": "mqtt out",
+        "id": "40453f3c40e2dd21",
+        "type": "ui_chart",
         "z": "5c441759e2734c24",
         "name": "",
-        "topic": "GIOT-GW/UL/1C497B499010",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "3a2f2943.8640a6",
-        "x": 190,
+        "group": "723379c69578ddb2",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_00",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce55fc427dfa53f4",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "723379c69578ddb2",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_00",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c633e9015ee7e7a",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "723379c69578ddb2",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_00",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7162b28b406408ae",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_01",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80365b1aa8f3a033",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_01",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8b0774b14a75b2c",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_01",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad8a98e89dddea06",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 1,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "一號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "一號溫度T1",
+        "x": 950,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "89ba7c33d4f030a1",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 140,
+        "wires": [
+            [
+                "ad8a98e89dddea06"
+            ]
+        ]
+    },
+    {
+        "id": "b1c93dbc59df2d77",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 2,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "一號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "一號溫度T2",
+        "x": 950,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1ee0fbd4c1746434",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 3,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "一號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "一號電壓",
+        "x": 940,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "68a6c3c496c6ad53",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 220,
+        "wires": [
+            [
+                "1ee0fbd4c1746434"
+            ]
+        ]
+    },
+    {
+        "id": "29a7aa76246e730d",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8d9031ea6a6394df",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "29a7aa76246e730d"
+            ]
+        ]
+    },
+    {
+        "id": "9699a8c78c79e1e9",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6c5de595eb4cb17f",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 320,
+        "wires": [
+            [
+                "9699a8c78c79e1e9"
+            ]
+        ]
+    },
+    {
+        "id": "7cf0b56ae31889c6",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d9a0a9e0bc91b0fe",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 360,
+        "wires": [
+            [
+                "7cf0b56ae31889c6"
+            ]
+        ]
+    },
+    {
+        "id": "7f1aabc715013c60",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_02",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "330670da928ce502",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_02",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6536cb5d9ec40508",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_02",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92a0c3f45ff64860",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "三號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "三號溫度T1",
+        "x": 950,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a054b1412db37acf",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 420,
+        "wires": [
+            [
+                "92a0c3f45ff64860"
+            ]
+        ]
+    },
+    {
+        "id": "66de16a037c50f43",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "三號溫度T2",
+        "x": 950,
         "y": 460,
         "wires": []
     },
     {
-        "id": "ffb16c3728c184f8",
+        "id": "55068460245647a0",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 460,
+        "wires": [
+            [
+                "66de16a037c50f43"
+            ]
+        ]
+    },
+    {
+        "id": "49d827b0e31b4575",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "三號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "三號電壓",
+        "x": 940,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "767fa7694beb6414",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 500,
+        "wires": [
+            [
+                "49d827b0e31b4575"
+            ]
+        ]
+    },
+    {
+        "id": "1658e87ffe2cb844",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_03",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef19cd193bb1160e",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_03",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e650722ff60e831b",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_03",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9359f3478f7804e8",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "91ad6417699bc0c8",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 560,
+        "wires": [
+            [
+                "9359f3478f7804e8"
+            ]
+        ]
+    },
+    {
+        "id": "0f93cfa890e67a69",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f6e641dee47d05b4",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 600,
+        "wires": [
+            [
+                "0f93cfa890e67a69"
+            ]
+        ]
+    },
+    {
+        "id": "9a1f2bb2a3a588ee",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "f109da08dc2b8609",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 640,
+        "wires": [
+            [
+                "9a1f2bb2a3a588ee"
+            ]
+        ]
+    },
+    {
+        "id": "6b02a8aca20c6f54",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_04",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2fa301e251fecfa",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_04",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0204de609ababc7a",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_04",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4f53b44d2c7e813",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "168c3d7345727d09",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 700,
+        "wires": [
+            [
+                "a4f53b44d2c7e813"
+            ]
+        ]
+    },
+    {
+        "id": "d12221b1f9079bac",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "46fa8fdb23753145",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 740,
+        "wires": [
+            [
+                "d12221b1f9079bac"
+            ]
+        ]
+    },
+    {
+        "id": "8705c068fe81f91a",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "cff2b389770b8a3a",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 780,
+        "wires": [
+            [
+                "8705c068fe81f91a"
+            ]
+        ]
+    },
+    {
+        "id": "65c2704f1abb5aa6",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_05",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7c83b21ac1468f2",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_05",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6ede9e0faebe15c",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_05",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca1a807684ed9dcc",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3a348f5ef2aec474",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 840,
+        "wires": [
+            [
+                "ca1a807684ed9dcc"
+            ]
+        ]
+    },
+    {
+        "id": "30823a954ced726c",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "d32229986aa9a3a1",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 880,
+        "wires": [
+            [
+                "30823a954ced726c"
+            ]
+        ]
+    },
+    {
+        "id": "81b994a4a90c11ee",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "328b50e938cc9a37",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 920,
+        "wires": [
+            [
+                "81b994a4a90c11ee"
+            ]
+        ]
+    },
+    {
+        "id": "f5707ac024c0388c",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_06",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "786b683e65ce67d0",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_06",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "006b80561792ecea",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_06",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb2d16488869034d",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "956a49f505860bd7",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 980,
+        "wires": [
+            [
+                "cb2d16488869034d"
+            ]
+        ]
+    },
+    {
+        "id": "5e9aa38f08e23c67",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "8fee02c0d2d2d08a",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1020,
+        "wires": [
+            [
+                "5e9aa38f08e23c67"
+            ]
+        ]
+    },
+    {
+        "id": "7077d305fc02c9b4",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "0a77c64c594878e2",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1060,
+        "wires": [
+            [
+                "7077d305fc02c9b4"
+            ]
+        ]
+    },
+    {
+        "id": "142608e40f7e91be",
+        "type": "debug",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "fa1a5c3290dcee5b",
         "type": "inject",
         "z": "5c441759e2734c24",
         "name": "",
@@ -301,13 +2550,878 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "[{\"channel\":923125000, \"sf\":10, \"time\":\"2022-04-30T21:53:58\", \"gwip\":\"192.168.88.1\", \"gwid\":\"0000f835dde7de2\", \"repeater\":\"00000000ffffffff\", \"systype\":4, \"rssi\":-118.0, \"snr\":0.5, \"snr_max\":3.8, \"snr_min\":-4.5, \"macAddr\":\"0000000004000476\", \"data\":\"8863599990090000004041351404135140413514041351404135140413514041351404135140413514041351\",\"frameCnt\":\"72\",\"port\":2}]",
+        "payload": "[{\"channel\":902500000, \"sf\":7, \"time\":\"2022-05-03T15:42:39+08:00\", \"gwip\":\"192.168.88.3\", \"gwid\":\"000080029c2b2a5d\", \"repeater\":\"00000000ffffffff\", \"systype\":5, \"rssi\":-35.0, \"snr\":25.5, \"snr_max\":37.0, \"snr_min\":14.5, \"macAddr\":\"0000000005000001\", \"data\":\"38383633353939393930303930303030303034303431333531343034313335313430343133353134303431333531343034313335313430343133353134303431333531343034313335313430343133353134303431333531\", \"frameCnt\":8, \"fport\":1}]",
         "payloadType": "str",
-        "x": 130,
-        "y": 380,
+        "x": 110,
+        "y": 280,
         "wires": [
             [
-                "f2e916b066c939be"
+                "f1e16b5a.b9cc58"
+            ]
+        ]
+    },
+    {
+        "id": "bf2f003632b3560f",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 180,
+        "wires": [
+            [
+                "b1c93dbc59df2d77"
+            ]
+        ]
+    },
+    {
+        "id": "402e2567ace068eb",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_07",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "afd24bc4f802961f",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_07",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "019abcfe9f0d0489",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_07",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "509aa742d52c2235",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "31b6d1f25aaa9484",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1120,
+        "wires": [
+            [
+                "509aa742d52c2235"
+            ]
+        ]
+    },
+    {
+        "id": "754a47ab7667e6aa",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "6cbb4f5f6fcedbb5",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1160,
+        "wires": [
+            [
+                "754a47ab7667e6aa"
+            ]
+        ]
+    },
+    {
+        "id": "19133a41901460e0",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "2527b307a0197a94",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1200,
+        "wires": [
+            [
+                "19133a41901460e0"
+            ]
+        ]
+    },
+    {
+        "id": "55fa53584903bfb1",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_08",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88ef9e5c3240a104",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_08",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "999716b4698d2d54",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_08",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "512ca3b8987fc484",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "58c264c217d7d9be",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1260,
+        "wires": [
+            [
+                "512ca3b8987fc484"
+            ]
+        ]
+    },
+    {
+        "id": "a0f20770568ca7c5",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "97e7e921b9f17a2a",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1300,
+        "wires": [
+            [
+                "a0f20770568ca7c5"
+            ]
+        ]
+    },
+    {
+        "id": "dc694c539e8c00a0",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "141f9a4dc3cf0297",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1340,
+        "wires": [
+            [
+                "dc694c539e8c00a0"
+            ]
+        ]
+    },
+    {
+        "id": "8fd45b073b8600c3",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "V_09",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f2d3e01a39282b8a",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T2_09",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8f61cc77809562d",
+        "type": "ui_chart",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "group": "2358e2f987375741",
+        "order": 0,
+        "width": "3",
+        "height": "3",
+        "label": "T1_09",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7bcbc519fb36626c",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 4,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T1",
+        "labelPlacement": "right",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "二號溫度T1",
+        "x": 950,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "e324e999324818e5",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1400,
+        "wires": [
+            [
+                "7bcbc519fb36626c"
+            ]
+        ]
+    },
+    {
+        "id": "c50c06184916c9da",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 5,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號溫度T2",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號溫度T2",
+        "x": 950,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "abe1c473b948a803",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常溫度",
+        "func": "var value = msg.payload\nif (value < 50) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1440,
+        "wires": [
+            [
+                "c50c06184916c9da"
+            ]
+        ]
+    },
+    {
+        "id": "419096e19e270cc6",
+        "type": "ui_led",
+        "z": "5c441759e2734c24",
+        "order": 6,
+        "group": "e09e6b64da968877",
+        "width": 3,
+        "height": 1,
+        "label": "二號電壓",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": false,
+        "name": "二號電壓",
+        "x": 940,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "6f8c9ac9d797e28a",
+        "type": "function",
+        "z": "5c441759e2734c24",
+        "name": "判斷正常電壓",
+        "func": "var value_vol = msg.payload\nif (value_vol > 25 && value_vol <45) {\n    msg.payload = true;\n} else {\n    msg.payload = false;\n}\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1480,
+        "wires": [
+            [
+                "419096e19e270cc6"
             ]
         ]
     }
