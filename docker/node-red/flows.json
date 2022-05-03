@@ -154,7 +154,7 @@
     {
         "id": "e09e6b64da968877",
         "type": "ui_group",
-        "name": "狀態版",
+        "name": "告警狀態",
         "tab": "de4f6f425e9e5d7a",
         "order": 1,
         "disp": true,
@@ -179,6 +179,25 @@
         "order": 1,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "49929dab3daad902",
+        "type": "ui_tab",
+        "name": "感測數值",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e428bbd258f4cca6",
+        "type": "ui_group",
+        "name": "感測數值表",
+        "tab": "49929dab3daad902",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "ab7db771.fa0e38",
@@ -215,7 +234,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 300,
-        "y": 80,
+        "y": 60,
         "wires": []
     },
     {
@@ -436,7 +455,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "json debug",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2520,11 +2539,12 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
@@ -2552,7 +2572,7 @@
         "topic": "",
         "payload": "[{\"channel\":902500000, \"sf\":7, \"time\":\"2022-05-03T15:42:39+08:00\", \"gwip\":\"192.168.88.3\", \"gwid\":\"000080029c2b2a5d\", \"repeater\":\"00000000ffffffff\", \"systype\":5, \"rssi\":-35.0, \"snr\":25.5, \"snr_max\":37.0, \"snr_min\":14.5, \"macAddr\":\"0000000005000001\", \"data\":\"38383633353939393930303930303030303034303431333531343034313335313430343133353134303431333531343034313335313430343133353134303431333531343034313335313430343133353134303431333531\", \"frameCnt\":8, \"fport\":1}]",
         "payloadType": "str",
-        "x": 110,
+        "x": 90,
         "y": 280,
         "wires": [
             [
@@ -3422,6 +3442,62 @@
         "wires": [
             [
                 "419096e19e270cc6"
+            ]
+        ]
+    },
+    {
+        "id": "b3aebacfa329c2b8",
+        "type": "ui_table",
+        "z": "5c441759e2734c24",
+        "group": "e428bbd258f4cca6",
+        "name": "test",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "columns": [
+            {
+                "field": "",
+                "title": "test",
+                "width": "",
+                "align": "left",
+                "formatter": "progress",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 130,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "b1f367d0919bd1c4",
+        "type": "inject",
+        "z": "5c441759e2734c24",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[     {         \"Name\": \"Kazuhito Yokoi\",         \"Age\": \"35\",         \"Favourite Color\": \"red\",         \"Date Of Birth\": \"12/09/1983\"     },     {         \"Name\": \"Oli Bob\",         \"Age\": \"12\",         \"Favourite Color\": \"cyan\",         \"Date Of Birth\": \"12/08/2017\"     } ]",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1040,
+        "wires": [
+            [
+                "b3aebacfa329c2b8"
             ]
         ]
     }
