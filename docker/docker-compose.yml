@@ -17,6 +17,8 @@ services:
     depends_on:
       - broker
     image: nodered/node-red
+    environment:
+      - TZ=Asia/Taipei
     networks:
       - localnet
     ports:
