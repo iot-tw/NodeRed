@@ -448,12 +448,18 @@
             [
                 "690f9dd6b61da5df"
             ],
-            [],
+            [
+                "c51c75f0106d1911"
+            ],
             [
                 "53b3c4f9d6e16afa"
             ],
-            [],
-            [],
+            [
+                "1394dfa93964e334"
+            ],
+            [
+                "5578f1335077e096"
+            ],
             [
                 "de0567f7f204d570",
                 "38c47486a2f3e239",
@@ -465,7 +471,8 @@
                 "a969e7de823cad83",
                 "160f47071f0422ab",
                 "3aeddd1c52830c9f",
-                "8782a667a4a62d54"
+                "8782a667a4a62d54",
+                "8d1dd48376556b17"
             ]
         ],
         "inputLabels": [
@@ -648,7 +655,7 @@
         "group": "e09e6b64da968877",
         "width": 3,
         "height": 1,
-        "label": "0號狀態",
+        "label": "0號全狀態",
         "labelPlacement": "right",
         "labelAlignment": "center",
         "colorForValue": [
@@ -671,9 +678,9 @@
         "allowColorForValueInMessage": false,
         "shape": "square",
         "showGlow": false,
-        "name": "0號狀態",
-        "x": 660,
-        "y": 300,
+        "name": "0號全狀態",
+        "x": 850,
+        "y": 260,
         "wires": []
     },
     {
@@ -1259,7 +1266,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1839,7 +1846,7 @@
         "showGlow": false,
         "name": "0號溫度1",
         "x": 840,
-        "y": 360,
+        "y": 340,
         "wires": []
     },
     {
@@ -1870,7 +1877,7 @@
         "showGlow": false,
         "name": "0號溫度2",
         "x": 1000,
-        "y": 360,
+        "y": 340,
         "wires": []
     },
     {
@@ -1901,7 +1908,7 @@
         "showGlow": false,
         "name": "0號電壓",
         "x": 1160,
-        "y": 360,
+        "y": 340,
         "wires": []
     },
     {
@@ -1909,7 +1916,7 @@
         "type": "debug",
         "z": "5c441759e2734c24",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1918,6 +1925,57 @@
         "statusType": "auto",
         "x": 710,
         "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1394dfa93964e334",
+        "type": "debug",
+        "z": "5c441759e2734c24",
+        "name": "班長ID",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "5578f1335077e096",
+        "type": "debug",
+        "z": "5c441759e2734c24",
+        "name": "帶頭班兵ID",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c51c75f0106d1911",
+        "type": "debug",
+        "z": "5c441759e2734c24",
+        "name": "流水序號",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 380,
         "wires": []
     }
 ]
